@@ -1,0 +1,235 @@
+<!DOCTYPE html>block0
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/iconengg.png"> <!--Icon Titulo-->
+    <link rel="stylesheet" href="cabeçalho.css">
+    <link rel="stylesheet" href="teste.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="conteudo.css">
+    <script src="home.js">
+    </script>
+    <title>TechStore</title>
+</head>
+
+<body>
+    <main>
+        <div class="banner"><img src="img/Aprenda sobre (3) (1).jpg" alt=""></div>
+
+    </main>
+    <header class="header">
+
+        <div class="content">
+
+            <a href="#" target="_blank" class="logo"><img src="img/Apple_logo_black.svg - Copia.png" title="Loop Nerd"></a>
+
+            <input class="mobile-btn" type="checkbox" id="mobile-btn" />
+            <label class="mobile-icon" for="mobile-btn"><span class="hamburguer"></span></label>
+
+            <ul class="nav">
+
+                <li><a href="http://127.0.0.1:5500/p%C3%A1gina%20inicial.html" title="Home">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/produtos.html" title="Sobre">Produtos</a></li>
+                <li><a href="http://127.0.0.1:5500/CARRINHO.html" title="Artigos">Carrinho</a></li>
+                <li><a href="#" title="Contato">Vantagens</a></li>
+                <li><a href="#" title="Contato">Notícias</a></li>
+                <li class="login"><a href="#" id="login-link">Login</a></li>
+                <!-- O botão de login tem um ID `login-link` e está contido em uma lista item (li) com a classe `login` -->
+            </ul>
+
+        </div>
+
+    </header>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="conteudo">
+        <h1>Carrinho de Compras</h1>
+        <div class="produtos">
+            <!-- Início do primeiro produto -->
+            <div class="produto" id="iphone11">
+                <span>iphone11</span> <!-- Nome do produto -->
+                <span>R$ 3.000</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('iphone11')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('iphone11')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do primeiro produto -->
+        
+            <!-- Início do segundo produto -->
+            <div class="produto" id="Carregador">
+                <span>Carregador</span> <!-- Nome do produto -->
+                <span>R$ 120,00</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('Carregador')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('Carregador')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do segundo produto -->
+        
+            <!-- Início do terceiro produto -->
+            <div class="produto" id="AirPodsMax">
+                <span>AirPodsMax</span> <!-- Nome do produto -->
+                <span>R$ 6.590</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('AirPodsMax')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('AirPodsMax')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do terceiro produto -->
+        
+            <!-- Início do quarto produto -->
+            <div class="produto" id="Airtag">
+                <span>Airtag</span> <!-- Nome do produto -->
+                <span>R$ 369,00</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('Airtag')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('Airtag')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do quarto produto -->
+        
+            <!-- Início do quinto produto -->
+            <div class="produto" id="Airpods">
+                <span>Airpods</span> <!-- Nome do produto -->
+                <span>R$ 1000.00</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('Airpods')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('Airpods')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do quinto produto -->
+        
+            <!-- Início do sexto produto -->
+            <div class="produto" id="Capinha">
+                <span>Capinha</span> <!-- Nome do produto -->
+                <span>R$ 600.00</span> <!-- Preço do produto -->
+                <button onclick="adicionarItem('Capinha')">Adicionar</button> <!-- Botão para adicionar o produto -->
+                <button onclick="removerItem('Capinha')">Remover</button> <!-- Botão para remover o produto -->
+            </div>
+            <!-- Fim do sexto produto -->
+        </div>
+        
+        </div>
+        <h2>Carrinho</h2>
+        <div id="carrinho">
+            <img src="img/iphone11.jpg">
+            <img src="img/carregador.webp">
+            <img src="img/fone.jpg">
+            <img src="img/airtag.jpg">
+            <img src="img/airpods - Copia.jpg">
+            <img src="img/capinha - Copia.jpg">
+        </div>
+        <h2>Total</h2>
+        <p id="total">R$ 0,00</p>
+    </div>
+
+    <script>
+        let carrinho = {};
+        const precos = {
+            iphone11: 3000.00,
+            Carregador: 120.00,
+            AirPodsMax: 6590.00,
+            Airtag: 369.00,
+            Airpods: 1000.00,
+            Capinha: 600.00
+        };
+
+        function adicionarItem(item) {
+            if (carrinho[item]) {
+                carrinho[item]++;
+            } else {
+                carrinho[item] = 1;
+            }
+            atualizarCarrinho();
+        }
+
+        function removerItem(item) {
+            if (carrinho[item]) {
+                carrinho[item]--;
+                if (carrinho[item] === 0) {
+                    delete carrinho[item];
+                }
+                atualizarCarrinho();
+            }
+        }
+
+        function calcularTotal() {
+            let total = 0;
+            for (let item in carrinho) {
+                total += carrinho[item] * precos[item];
+            }
+            return total.toFixed(2);
+        }
+
+
+        function atualizarCarrinho() {
+            const carrinhoDiv = document.getElementById('carrinho');
+            carrinhoDiv.innerHTML = '';
+            for (let item in carrinho) {
+                const div = document.createElement('div');
+                div.textContent = `${item} x${carrinho[item]}`;
+                carrinhoDiv.appendChild(div);
+            }
+            document.getElementById('total').textContent = `R$ ${calcularTotal()}`;
+        }
+
+    </script>
+
+
+
+    <!--Inicio Footer--> <!-- Código do footer utilizado no trabalho anterior -->
+
+    <section class="cardrosa">
+
+        <footer class="main_footer container">
+
+            <div class="content">
+
+                <div class="colfooter">
+
+                    <h4 class="titleFooter"> Menu</h4>
+
+                    <ul>
+
+                        <li><a href="#" title="Página Inícial">Página Inícial</a></li>
+                        <li><a href="#" title="Sobre a Empresa">Sobre a Empresa</a></li>
+                        <li><a href="#" title="Galeria de Fotos">Galeria de Fotos</a></li>
+                        <li><a href="#" title="Fale Conosco">Fale Conosco</a></li>
+
+                    </ul>
+
+                </div><!--Col Footer 1-->
+
+                <div class="colfooter">
+
+                    <h4 class="titleFooter"> Contato</h4>
+                    <p><i class="icon icon-mail"></i> contato@energyhub.com.br</p>
+                    <p><i class="icon icon-phone"></i> 11 90000-0000</p>
+                    <p><i class="icon icon-whatsapp"></i> 11 90000-0000</p>
+
+                </div><!--Col Footer 2-->
+
+                <div class="colfooter">
+
+
+                    <h4 class="titleFooter"> Redes Sociais</h4>
+                    <ul>
+
+                        <li><a href="#" title="Página Inícial">Instagram</a></li>
+                        <li><a href="#" title="Sobre a Empresa">Facebook</a></li>
+                        <li><a href="#" title="Galeria de Fotos">Senai</a></li>
+                        <li><a href="#" title="Fale Conosco">Desenvolvedores</a></li>
+
+                    </ul>
+
+                </div><!--Col Footer 3-->
+
+                <div class="clear"></div>
+
+            </div><!--Contant-->
+
+            <div class="main_footer_copy">
+
+                <p class="m-b-footer"> Energy Hub - 2023, todos os direitos reservados.</p>
+                <p class="by"><i class="icon icon-heart-3"></i> Desenvolvido por: <a href="#" title="Energy Hub">Energy
+                        Hub</a></p>
+
+            </div>
+        </footer>
+    </section>
+
+</body>
+
+</html>
